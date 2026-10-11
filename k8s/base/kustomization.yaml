@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# The namespace itself and the `rag-secrets` Secret are created once by a
+# cluster admin (see README), so the CI role only needs namespace-scoped rights.
+namespace: rag
+
+resources:
+  - backend.yaml
+  - frontend.yaml
+  - ingress.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: rag
+    includeSelectors: false
+
+configMapGenerator:
+  - name: backend-config
+    literals:
+      - APP_ENV=production
+      - LOG_LEVEL=INFO
+      - LLM_MODEL=claude-opus-5-5
+      - LLM_EFFORT=medium
+      - PINECONE_INDEX=rag-documents
+      - PINECONE_NAMESPACE=default
+      - PINECONE_CLOUD=aws
+      - PINECONE_REGION=us-east-1
+      - TORCH_NUM_THREADS=2

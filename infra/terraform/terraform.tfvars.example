@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and edit.
+github_repository = "your-org/your-repo"
+
+# aws_region                  = "us-east-1"
+# name                        = "rag"
+# create_github_oidc_provider = false   # if the account already has the GitHub OIDC provider

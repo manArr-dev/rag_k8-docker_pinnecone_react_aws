@@ -1,0 +1,12 @@
+# Runtime dependencies. The Docker image installs the CPU-only torch wheel
+# first (see Dockerfile) so this file never pulls the multi-GB CUDA build.
+fastapi>=0.115,<1
+uvicorn[standard]>=0.32,<1
+pydantic>=2.9,<3
+pydantic-settings>=2.6,<3
+python-multipart>=0.0.18
+torch>=2.4,<3
+transformers>=4.46,<6
+pinecone>=7,<9
+anthropic>=1.0,<2
+pypdf>=5.1,<7
